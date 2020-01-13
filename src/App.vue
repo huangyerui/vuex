@@ -1,12 +1,28 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    hyr{{this.$store.state.age}}
+    <br>
+    我的年龄是{{this.$store.getters.myAge}}
+    <button @click="add">年龄增加</button>
+     <button @click="minus">年龄减少</button>
   </div>
 </template>
+<script>
+export default {
+  name:'app',
+  mounted() {
+    console.log(this.$store)
+  },
+  methods:{
+    add(){
+      this.$store.commit('syncAdd',3)
+    },
+    minus(){
+       this.$store.dispatch('asyncMinus',3)
+    }
+  }
+}
+</script>
 
 <style lang="stylus">
 #app
